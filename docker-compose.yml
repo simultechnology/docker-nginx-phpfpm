@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web:
+      build:
+        context: .
+        dockerfile: ./containers/nginx/Dockerfile
+      volumes:
+        - "./html:/var/www/html"
+      ports:
+        - "8318:80"
+      depends_on:
+        - php
+  php:
+      volumes:
+        - "./code:/var/www/html"
+      build:
+        context: .
+        dockerfile: ./containers/php/Dockerfile
